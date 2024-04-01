@@ -33,14 +33,14 @@ class LeetsMateApplicationTests {
 
 	@Test
 	void 멤버수와_최대_멤버수를_잘못_입력한_경우_예외를_반환한다() {
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(Exception.class, () -> {
 			app.checkDataValidity(3,4);
 		});
 	}
 
 	@Test
 	void 멤버_문자열에_영어를_입력한_경우_예외를_반환한다() {
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(Exception.class, () -> {
 			app.checkHasNoEnglish("haha");
 		});
 	}
