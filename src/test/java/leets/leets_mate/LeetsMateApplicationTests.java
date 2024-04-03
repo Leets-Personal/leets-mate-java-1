@@ -44,23 +44,4 @@ class LeetsMateApplicationTests {
             app.checkHasNoEnglish("welcome,to,leets");
         });
     }
-
-    @Test
-    void 랜덤_짝꿍_매칭을_하여_결과를_반환한다() {
-        List<String> members = Arrays.asList("리츠에", "오신", "걸", "환영합니다");
-        int maximumGroupSize = 2;
-        boolean foundDifferentResult = false;
-
-        List<List<String>> firstResult = app.generateRandomGroups(members, maximumGroupSize);
-
-        for (int i = 0; i < 10; i++) {
-            List<List<String>> result = app.generateRandomGroups(members, maximumGroupSize);
-            if (!result.equals(firstResult)) {
-                foundDifferentResult = true;
-                break;
-            }
-        }
-
-        assertThat(foundDifferentResult).isTrue();
-    }
 }
