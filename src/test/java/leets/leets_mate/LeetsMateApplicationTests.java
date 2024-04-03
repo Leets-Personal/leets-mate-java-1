@@ -1,16 +1,15 @@
 package leets.leets_mate;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 
-@SpringBootTest
 class LeetsMateApplicationTests {
 	LeetsMateApplication app;
 
@@ -21,14 +20,20 @@ class LeetsMateApplicationTests {
 
 	@Test
 	void 입력받은_문자열을_파싱하여_리스트로_만든다() {
-		List<String> expected = Arrays.asList("a", "b", "c");
-		assertIterableEquals(expected, app.parseMembers("a,b,c"));
+		String members = "a,b,c";
+
+		List<String> actual = app.parseMembers(members);
+
+		assertThat(actual).containsExactly("a", "b", "c");
 	}
 
 	@Test
 	void 멤버수를_반환한다() {
-		List<String> expected = Arrays.asList("a", "b", "c");
-		assertSame(3, app.memberNumber(expected));
+		List<String> members = Arrays.asList("a", "b", "c");
+
+		int actual = app.memberNumber(members);
+
+		assertThat(actual).isEqualTo(3);
 	}
 
 	@Test
@@ -48,7 +53,7 @@ class LeetsMateApplicationTests {
 
 	@Test
 	void 랜덤_짝꿍_매칭을_하여_결과를_반환한다() {
-		List<String> memberList = Arrays.asList("A", "B", "C", "D", "E", "F");
+		List<String> members = Arrays.asList("A", "B", "C", "D", "E", "F");
 		int maximumGroupSize = 2;
 
 		List<List<String>> expected = Arrays.asList(
@@ -57,7 +62,12 @@ class LeetsMateApplicationTests {
 				Arrays.asList("E", "F")
 		);
 
-		List<List<String>> actual = app.generateRandomGroups(memberList, maximumGroupSize);
-		assertIterableEquals(expected, actual);
+		List<List<String>> actual = app.generateRandomGroups(members, maximumGroupSize);
+		assertAll(
+				() -> assertThat(actual.get(0)).containsExactly("A", "B"),
+				() -> assertThat(actual.get(1)).containsExactly("C", "D"),
+				() -> assertThat(actual.get(2)).containsExactly("E", "F")
+		);
+		assertThat(actual).isEqualTo(expected);
 	}
 }
