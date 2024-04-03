@@ -1,11 +1,7 @@
 package leets.leets_mate;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@SpringBootApplication
 public class LeetsMateApplication {
 
     // 동작 함수입니다.
