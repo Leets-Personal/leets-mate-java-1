@@ -16,12 +16,23 @@ repositories {
 }
 
 dependencies {
-	testImplementation platform('org.junit:junit-bom:5.9.1')
+	//implementation 'org.projectlombok:lombok:1.18.26'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
 	testImplementation platform('org.assertj:assertj-bom:3.25.1')
 	testImplementation('org.junit.jupiter:junit-jupiter')
 	testImplementation('org.assertj:assertj-core')
+	annotationProcessor 'org.projectlombok:lombok'
+	// test 롬복 사용
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile){
+	options.encoding = "UTF-8"
 }
