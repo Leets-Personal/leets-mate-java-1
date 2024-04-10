@@ -31,17 +31,13 @@ class LeetsMateApplicationTests {
 
     @Test
     void 멤버수와_최대_멤버수를_잘못_입력한_경우_예외를_반환한다() {
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            app.checkDataValidity(3, 4);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> app.checkDataValidity(3, 4));
         assertThat(exception.getMessage()).contains("GROUP_SIZE_ERROR");
     }
 
     @Test
     void 멤버_문자열에_영어를_입력한_경우_예외를_반환한다() {
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            app.checkHasNoEnglish("welcome,to,leets");
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> app.checkHasNoEnglish("welcome,to,leets"));
         assertThat(exception.getMessage()).contains("INPUT_FORMAT_ERROR");
     }
 
